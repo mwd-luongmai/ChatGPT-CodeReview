@@ -110,7 +110,10 @@ export const robot = (app: Probot) => {
         if (!patch || patch.length > MAX_PATCH_COUNT) {
           continue;
         }
-        const res = await chat?.codeReview(patch);
+
+        const cleanedPatch = patch.replace(/com\.axonvibe/g, '');
+
+        const res = await chat?.codeReview(cleanedPatch);
 
         if (!!res) {
           await context.octokit.pulls.createReviewComment({
