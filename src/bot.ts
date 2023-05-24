@@ -122,7 +122,7 @@ export const robot = (app: Probot) => {
             pull_number: context.pullRequest().pull_number,
             commit_id: commits[commits.length - 1].sha,
             path: file.filename,
-            body: res,
+            body: res.replace(/com\.axonvibe/g, ''),
             position: patch.split('\n').length - 1,
           });
         }
